@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, Response
 from flask_cors import CORS
 from prometheus_client import Counter, generate_latest, CONTENT_TYPE_LATEST
+import random
 
 app = Flask(__name__)
 CORS(app)
