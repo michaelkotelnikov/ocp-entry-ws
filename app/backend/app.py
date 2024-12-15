@@ -12,7 +12,7 @@ def get_data():
     REQUEST_COUNTER.inc()
     
     numbers = [random.randint(1, 100) for _ in range(5)]
-    return jsonify({"message": "Here is your data!", "data": numbers})
+    return jsonify({"message": "Here is your random data!", "data": numbers})
 
 @app.route("/metrics", methods=["GET"])
 def metrics():
