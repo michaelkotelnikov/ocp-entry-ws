@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: docker.io/mkotelni/frontend:0.0.1
+          ports:
+            - containerPort: 3000
+              name: frontend
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
