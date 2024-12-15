@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: docker.io/mkotelni/backend:0.0.3
+          image: docker.io/mkotelni/backend:0.0.4
           ports:
             - containerPort: 5000
               name: backend
