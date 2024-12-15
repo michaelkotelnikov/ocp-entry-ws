@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: backend-alert
+spec:
+  groups:
+  - name: backend
+    rules:
+    - alert: HighBackendRequests
+      for: 10s
+      expr: get_requests_total{service="backend"} > 20
+      labels:
+        severity: critical 
+      annotations:
+        message: Number of requests to backend passed 20

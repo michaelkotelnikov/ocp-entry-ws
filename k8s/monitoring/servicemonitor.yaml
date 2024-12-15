@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: backend-exporter
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  endpoints:
+    - port: 5000-tcp
+      interval: 15s
