@@ -152,3 +152,46 @@ In this section, you will enroll the application into the OpenShift monitoring s
 7. The metric represents the number of requests that reached the backend. In the application, press '_Refresh Data_' until the metric reaches over 20 requests.
 
 8. Navigate to the '_Alerts_' panel in OpenShift and explore the dashboard.
+
+## Part 3
+
+In this section, you will enroll the 'backend' component of the application into ArgoCD and utilize GitOps practices.
+
+1. Fork this GitHub repository by using your GitHub account (No need to install git client on your workstation, everything can be done via the browser).
+
+2. Log into the ArgoCD instance by browsing to the URL provided by the instructor. Use the OpenShift credentials.
+
+3. In ArgoCD, click on '_Create Application_'.
+
+4. Click on '_Edit as YAML_'.
+
+5. Copy the next manifest into ArgoCD. Make sure to edit the '_name_', '_repoURL_', '_namespace_' and '_project_' fields with your information.
+
+```
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application-<your username | e.g - user-1>
+  namespace: openshift-gitops
+spec:
+  destination:
+    name: in-cluster
+    namespace: <your username | e.g - user-1>
+  project: <your username | e.g - user-1>
+  source:
+    path: k8s/backend
+    repoURL: https://github.com/<your GitHub username | e.g - michaelkotelnikov>/ocp-entry-ws
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+```
+
+6. Click on '_Save_' and then on '_Create_'.
+
+7. Make sure the application is synced successfuly.
+
+8. Change the manifest at '_k8s/backend/deployment.yaml_'. Modify the value at - '_cpu_' to '_150m_'. Make sure to push your commit.
+
+9. Press on '_Refresh_' in the ArgoCD instance. Make sure the changes apply automatically.
