@@ -180,7 +180,7 @@ spec:
   project: <your username | e.g - user-1>
   source:
     path: k8s/backend
-    repoURL: https://github.com/<your GitHub username | e.g - michaelkotelnikov>/ocp-entry-ws
+    repoURL: <https://github.com/<your GitHub username | e.g - michaelkotelnikov>/ocp-entry-ws>
     targetRevision: master
   syncPolicy:
     automated:
